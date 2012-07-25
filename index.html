@@ -2,30 +2,117 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>HUK Cookie JS</title>
+	<title>EU Cookie law plugin</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/cookie_style.css">
+	<style>
+		body		{ font-family: sans-serif; font-size: 0.9em; overflow-y: scroll; }	
+		#wrapper	{ max-width: 500px; margin: 40px auto; position: relative; left: 150px; }
+		#wrapper h1	{ font-size: 2em; }
+		#wrapper h2	{ margin-top: 10px; font-size: 1.25em; font-weight: bold; text-transform: uppercase; color: rgb(32, 165, 218);}
+		#wrapper h2	{ display: block; height: 0px; position: relative; left: -420px; top: 15px; width: 400px; text-align: right; }
+		a			{ color: red; }
+		code, pre	{ background-color: rgb(220, 235, 241); padding: 1px; }
+		pre			{ padding: 5px; }
+		select		{ margin-bottom: 30px; }
+		dt			{ font-weight: bold; }
+		em			{ display: block; height: 0px; position: relative; left: -420px; top: 4px; width: 400px; text-align: right; }
+				
+		#wrapper, em, h2 { 
+  -webkit-transition: left .5s ease-out; 
+     -moz-transition: left .5s ease-out; 
+       -o-transition: left .5s ease-out; 
+          transition: left .5s ease-out;
+		}
+		
+		@media screen and (max-width: 850px) {
+			#wrapper	{ left: 0; }
+			em, h2		{ height: auto; margin-bottom: 10px; left: 0; top: 0; text-align: left; }  
+		}
+	</style>
 </head>
 <body>
 	
-	<div id='container'>
-		<h1>EU - Cookie Opt in-out</h1>
-			<p>This is cookie opt in-out library as per the new EU law released on the 26th May.</p>
-		<ul>
-			<li><a href='javascript:EU.CookiePreferenceUI.toggleOptions();void(0);'>Change Settings</a></li>
-		</ul>
+	<a href="https://github.com/hongaar/eu-cookie-opt-in"><img style="position: absolute; top: 0; left: 0; border: 0; z-index: 100;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+	<div id='wrapper'>
+		<h1>EU Cookie law plugin</h1>
+		
+		<p>This is cookie opt in-out library as per the new EU law released on the 26th May.</p>
+		<p>
+			<a href='javascript:EU.CookiePreferenceUI.toggleOptions();void(0);'>Change cookie settings of this page</a>
+		</p>
+			
+		<h2>Usage</h2>
+		
+		<p>Include <code>cookie.debug.min.js</code> and <code>cookie_style.css</code> on your page.</p>
+
+		<pre>
+// Initialize widget
+EU.CookieManager.init();
+</pre>
+		
+		<h2>Options</h2>
+
+		<pre>
+// Remove options to use defaults
+EU.CookieManager.init({
+    idle: 0,
+    level: 0,
+    message: '[INTRO TEXT]',
+    cancel: 'I agree',
+    changeSettings: 'Change settings',
+    linkText: 'Find out more about cookies',
+    functionalList: {
+        'strict': {
+            will: ['[USE CASE 1]', '[USE CASE 2]'],
+            willnot: []
+        },
+        'functional': {
+            will: [],
+            willnot: []
+        },
+        'targeting': {
+            will: [],
+            willnot: []
+        }
+      }
+});
+</pre>
+
+		<h2>Download</h2>
+		
+		<p>
+			<img src="http://planetozh.com/projects/famfamfam-icon-explorer/icons/script_code.png" style="vertical-align: middle;" width="16" height="16" />
+			<a href="https://raw.github.com/hongaar/eu-cookie-opt-in/v0.1/cookie.debug.min.js">cookie.debug.min.js</a><br/>
+			<img src="http://planetozh.com/projects/famfamfam-icon-explorer/icons/style.png" style="vertical-align: middle;" width="16" height="16" />
+			<a href="https://raw.github.com/hongaar/eu-cookie-opt-in/v0.1/css/cookie_style.css">cookie_style.css</a><br/>
+			<img src="http://planetozh.com/projects/famfamfam-icon-explorer/icons/page_white_compressed.png" style="vertical-align: middle;" width="16" height="16" />
+			<a href="https://github.com/hongaar/eu-cookie-opt-in/zipball/v0.1">source code as zip archive</a>
+			
+		</p>
+		
+		<h2>What's new</h2>
+		
+		<dl>
+			<dt>v0.1</dt>
+			<dd>First release based on plugin by Gaurav Jassal (<a href="https://github.com/creativeaura">github.com/creativeaura</a>)</dd>
+		</dl>
+		
+		<h2>Acknowledgements</h2>
+		
+		<p>This plugin is originally written by Gaurav Jassal and can be found at <a href="https://github.com/creativeaura/eu-cookie-opt-in">github.com/creativeaura/eu-cookie-opt-in</a>.
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="jquery-1.7.2.min.js"><\/script>')</script>
 	
-	<script type="text/javascript" src='cookie.debug.min.js'></script>	
+	<script type="text/javascript" src='cookie.debug.js'></script>	
 	<script type="text/javascript">
-		// Use a domready function or the likes (i.e. $(document).ready(init) for jQuery)		
-		// Alternatively, you can use this onload function:
-		attach(window, 'load', init);
+		// Function to attach events cross-browser
+		// Use your javascript library function for the DOMReady event instead
 		function attach(elm, event, callback) { // @see http://stackoverflow.com/questions/9434/how-do-i-add-an-additional-window-onload-event-in-javascript
 			if (elm.addEventListener) { // W3C standard
 				window.addEventListener(event, callback, false);
@@ -34,15 +121,17 @@
 			}
 		}
 		
+		attach(window, 'load', init);		
+		
 		function init(){
 			EU.CookieManager.init({
 				expires: 20,
 				cookie_prefix: 'EU_',
 				optin_cookie_name: 'OPTIN',
-				test:false,
-				idle:0,
+				test: false,
+				idle: 0,
 				link: 'cookie.html',
-				defaultValue:4,
+				defaultValue: 4,
 				assosiatedCookies: {
 					'strict' : ['a'],
 					'functional': ['b', 'c'],
