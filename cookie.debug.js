@@ -2,7 +2,7 @@
   "use strict";
   /**
    * @class EU
-   * @version 0.0.1v
+   * @version 0.1
    *
    * JavaScript library to manage cookie optin and optout for users visiting
    * your website. Once we initilize the CookieMange Class
@@ -39,7 +39,7 @@
     level: 0,
     message: 'The cookie settings on this website are set to <strong>\'allow all cookies\'</strong> to give you the very best experience.' +
       ' If you continue without changing these settings you consent to this - but you can change your settings' +
-      ' by clicking the <strong>Change settings</strong> link at any time.',
+      ' by clicking the <strong>Change settings</strong> link below.',
 	cancel: 'I agree',
 	changeSettings: 'Change settings',
 	linkText: 'Find out more about cookies',
